@@ -1825,6 +1825,7 @@ int main(int argc, char *argv[])
 			// Static ECEF coordinates input mode
 			staticLocationMode = TRUE;
 			sscanf(optarg,"%lf,%lf,%lf",&xyz[0][0],&xyz[0][1],&xyz[0][2]);
+			xyz2llh(xyz[0], llh); // Set user initial position
 			break;
 		case 'l':
 			// Static geodetic coordinates input mode
@@ -1976,9 +1977,6 @@ int main(int argc, char *argv[])
 
 		// Set simulation duration
 		numd = iduration;
-
-		// Set user initial position
-		llh2xyz(llh, xyz[0]);
 	}
 
 	fprintf(stderr, "xyz = %11.1f, %11.1f, %11.1f\n", xyz[0][0], xyz[0][1], xyz[0][2]);
